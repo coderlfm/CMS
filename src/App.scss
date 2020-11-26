@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+  background: #f3f3f3;
+  
+  header{
+    padding-top: 10px;
+    span{
+      margin: 0 5px;
+      padding: 1px 3px;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+  }
+  
+  main{
+    margin:10px 0;
+    min-height: 300px;
+  }
+  footer{
+    a{
+      padding: 0 5px;
+      background-color: rgba(187,239,253,0.3);
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+  }
+}
