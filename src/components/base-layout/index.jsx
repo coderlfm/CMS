@@ -44,14 +44,14 @@ export default ({ routers }) => {
 
     return (
         <>
-            <Button
+            {/* <Button
                 onClick={() => setIndex(index + 1)}
                 style={{
                     margin: 8,
                 }}
             >
                 重新加载
-            </Button>
+            </Button> */}
             <ProLayout
                 style={{
                     height: '100vh',

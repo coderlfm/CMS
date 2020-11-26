@@ -11,7 +11,7 @@ import BaseLayout from '@/components/base-layout'
 
 
 import routes from '@/router'
-import './App.scss';
+import './App.less';
 
 const columns = [
   {

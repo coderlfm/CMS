@@ -7,13 +7,6 @@ export default [
           path: '/home',
           name: 'home',
           exact: true,
-        //   children: [
-        //     {
-        //       path: '/welcome/welcome',
-        //       name: 'two',
-        //       exact: true,
-        //     },
-        //   ],
         },
         {
             path: '/profile',
