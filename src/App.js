@@ -167,7 +167,7 @@ function App() {
   }
 
   useEffect(() => {
-    console.clear();
+    // console.clear();
     // console.log(setting);
   })
 

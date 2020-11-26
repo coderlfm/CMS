@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import ProLayout, { PageContainer, MenuDataItem } from '@ant-design/pro-layout';
 import { Button } from 'antd';
 
-import { useHistory ,Switch} from 'react-router-dom'
+import { useHistory, Switch } from 'react-router-dom'
 
-
+import { requestTest } from '@/services/request'
 import customMenuDate from './customMenu.js';
 
 /**
@@ -29,17 +29,38 @@ export default ({ routers }) => {
         }, 2000);
     }, [index]);
 
+    /**
+     * 菜单跳转页面
+     * @param {Object} e 
+     */
     const handleMenuClick = (e) => {
         console.log(e);
-        history.push({
-            pathname: e.key,
-            state: {
-                //   ...res.result.config,
-                //   columns: res.result.column,
-                //   search: { ...res.result.search, span: null },
-                //   url: ''
-            }
-        })
+        if (e.key === '/table') {
+            requestTest({ url: '/init', method: 'get' }).then(res => {
+                if (res.code === '0') {
+                    history.push({
+                        pathname: '/table',
+                        state: {
+                            ...res.result.config,
+                            columns: res.result.column,
+                            search: { ...res.result.search, span: null },
+                            url: ''
+                        }
+                    })
+                }
+                console.log('res', res);
+            })
+        } else {
+            history.push({
+                pathname: e.key,
+                state: {
+                    //   ...res.result.config,
+                    //   columns: res.result.column,
+                    //   search: { ...res.result.search, span: null },
+                    //   url: ''
+                }
+            })
+        }
     }
 
     return (
@@ -57,24 +78,22 @@ export default ({ routers }) => {
                     height: '100vh',
                     //   border: '1px solid #ddd',
                 }}
+                // title={false}
                 menu={{
                     loading,
                 }}
                 location={{
                     pathname: '/welcome/welcome',
                 }}
-                onMenuHeaderClick={(e) => { console.log(e); }}
-                onPageChange={(e) => { console.log(e); }}
+                // onMenuHeaderClick={(e) => { console.log(e); }}
+                // onPageChange={(e) => { console.log(e); }}
                 menuDataRender={() => menuData}
                 menuProps={{
                     onClick: handleMenuClick
                 }}
             >
-                <PageContainer content="欢迎使用">Hello World
-                <Switch>
-
-                {routers}
-                </Switch>
+                <PageContainer content="">
+                    <Switch>{routers}</Switch>
                 </PageContainer>
 
             </ProLayout>

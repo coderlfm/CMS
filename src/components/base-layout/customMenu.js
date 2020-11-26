@@ -1,7 +1,7 @@
 export default [
     {
       path: '/',
-      name: '主页 ',
+      name: 'home',
       children: [
         {
           path: '/home',
@@ -17,6 +17,10 @@ export default [
     },
     {
       path: '/test',
-      name: '动态表格',
+      name: 'test',
+    },
+    {
+      path: '/table',
+      name: 'table',
     },
   ];
