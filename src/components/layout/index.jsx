@@ -38,36 +38,40 @@ export default memo(({ routers }) => {
         console.log(e);
         if (e.key === '/table') {
             // requestNew({ url: '../mork/mork.json', method: 'get' }).then(res => {
-            setTimeout(() => {
-                const res = require('../mork/mork-search.json')
-                // if (res.code === '0') {
-                history.push({
-                    pathname: '/table',
-                    state: {
+            // setTimeout(() => {
+            //     const res = require('../mork/mork-search.json')
+            //     // if (res.code === '0') {
+            //     history.push({
+            //         pathname: '/table',
+            //         state: {
+            //             ...res.result.config,
+            //             columns: res.result.column,
+            //             search: { ...res.result.search, span: null },
+            //             url: ''
+            //         }
+            //     })
+            //     // }
+            //     // console.log('res', res);
+            // }, 500)
+            // })
+            requestTest({ url: e.key + '/init', method: 'get' }).then(res => {
+                if (res.code === '0') {
+                    const state = {
                         ...res.result.config,
                         columns: res.result.column,
                         search: { ...res.result.search, span: null },
                         url: ''
                     }
-                })
-                // }
-                // console.log('res', res);
-            }, 500)
-            // })
-            // requestTest({ url: '/init', method: 'get' }).then(res => {
-            //     if (res.code === '0') {
-            //         history.push({
-            //             pathname: '/table',
-            //             state: {
-            //                 ...res.result.config,
-            //                 columns: res.result.column,
-            //                 search: { ...res.result.search, span: null },
-            //                 url: ''
-            //             }
-            //         })
-            //     }
-            //     console.log('res', res);
-            // })
+
+                    history.push({
+                        pathname: e.key,
+                        state
+                    })
+
+                    sessionStorage.setItem('init', JSON.stringify(state))
+                }
+                console.log('res', res);
+            })
         } else {
             history.push({
                 pathname: e.key,

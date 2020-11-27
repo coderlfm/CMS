@@ -7,7 +7,7 @@ import { TableDropdown } from '@ant-design/pro-table';
 import { useCreateRoutes } from '@/utils/utils'
 import { getTestApi } from '@/services/home'
 import { requestTest } from '@/services/request'
-import BaseLayout from '@/components/base-layout'
+import BaseLayout from '@/components/layout'
 
 
 import routes from '@/router'
@@ -166,59 +166,7 @@ function App() {
     search
   }
 
-  useEffect(() => {
-    // console.clear();
-    // console.log(setting);
-  })
-
-  // console.log(setting);
-
-  const toTable = () => {
-    // requestTest.get().then(res=>{
-    //   console.log(res);
-    // })
-
-    requestTest({ url: '/init', method: 'get' }).then(res => {
-      if (res.code === '0') {
-        history.push({
-          pathname: '/table',
-          state: {
-            ...res.result.config,
-            columns: res.result.column,
-            search: { ...res.result.search, span: null },
-            url: ''
-          }
-        })
-      }
-      console.log('res', res);
-    })
-
-  }
-
   return (
-    // <div className="App">
-    //   <header>
-    //     {/* <span onClick={() => history.push('/home')}>首页</span> */}
-    //     {/* <span onClick={() => history.push('/login')}>登录</span> */}
-
-    //     <span onClick={() => history.push('/')}>返回</span>
-
-    //     <span onClick={toTable}>配置表格</span>
-    //   </header>
-
-    //   <main> {routesList} </main>
-
-    //   <footer>
-    //     <a
-    //       className="App-link"
-    //       href="https://github.com/coderlfm/react-template"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       To view the document
-    //     </a>
-    //   </footer>
-    // </div>
     <BaseLayout routers={routesList} />
   );
 }

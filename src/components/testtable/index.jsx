@@ -2,6 +2,7 @@ import React, { useRef, lazy, memo } from 'react';
 import { PlusOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { Button, Tag, Space, Menu, Dropdown } from 'antd';
 import ProTable, { TableDropdown } from '@ant-design/pro-table';
+import { useHistory, useLocation } from 'react-router-dom'
 import request from 'umi-request';
 
 import { requestTest } from '@/services/request'
@@ -143,9 +144,14 @@ const menu = (
 export default memo((props) => {
     // console.log('props', props);
 
-    const state = props.props
+    // 刷新时取不到时从sessionStorage中取
+    const state = props.props || JSON.parse(sessionStorage.getItem('init'))
+    // const history = useHistory();
+    const location = useLocation();
 
-    console.log('props.', state);
+    console.log( location);
+
+    // console.log('props.', state);
     const actionRef = useRef();
 
     const toolBar = () => {
@@ -178,10 +184,10 @@ export default memo((props) => {
                 type: 'radio'
             }}
             request={
-                async (params = {}) => {
-                    console.log('查询', params);
-                    // const result = await requestTest({ url: state.url, method: 'get', data: {} })
-                    const result = require('../mork/mork-data.json')
+                async (data = {}) => {
+                    console.log('查询', data);
+                    const result = await requestTest({ url: location.pathname+'/data', method: 'get', data })
+                    // const result = require('../mork/mork-data.json')
                     let res = {
                         data: result.result.list,
                         success: true,
