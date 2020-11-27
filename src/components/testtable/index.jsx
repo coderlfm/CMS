@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, lazy, memo } from 'react';
 import { PlusOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { Button, Tag, Space, Menu, Dropdown } from 'antd';
 import ProTable, { TableDropdown } from '@ant-design/pro-table';
@@ -139,29 +139,36 @@ const menu = (
     </Menu>
 );
 
-// export default ({
-//     columns = columnss,
-//     rowSelection = {},
-//     rowKey = "id",
-//     pagination = {
-//         pageSize: 5,
-//     },
-//     headerTitle = '高级表格',
-// }) => {
-export default (props) => {
+
+export default memo((props) => {
     // console.log('props', props);
 
     const state = props.props
-    // const state = {
-    //     columns,
-    //     rowSelection,
-    //     rowKey,
-    //     pagination,
-    //     headerTitle
-    // }
 
     console.log('props.', state);
     const actionRef = useRef();
+
+    const toolBar = () => {
+        const CmsModal = lazy(() => import('../modal'))
+        const toolBarArr = [
+            <Button key="button" icon={<PlusOutlined />} type="primary">
+                新建
+                {/* 动态判断是否需要渲染新增 */}
+            </Button>,
+            // <CmsModal key="modal" />,
+            <Dropdown key="menu" overlay={menu}>
+                <Button>
+                    <EllipsisOutlined />
+                </Button>
+            </Dropdown>,
+        ]
+        if (true) {
+            toolBarArr.push(<CmsModal key="modal" />)
+        }
+        return toolBarArr
+    }
+
+
     return (
         <ProTable
 
@@ -172,7 +179,9 @@ export default (props) => {
             }}
             request={
                 async (params = {}) => {
-                    const result = await requestTest({ url: state.url, method: 'get', data: {} })
+                    console.log('查询', params);
+                    // const result = await requestTest({ url: state.url, method: 'get', data: {} })
+                    const result = require('../mork/mork-data.json')
                     let res = {
                         data: result.result.list,
                         success: true,
@@ -186,28 +195,20 @@ export default (props) => {
                 // })
             }
             postData={(data) => {
-                console.log('data', data);
+                // console.log('data', data);
                 return data
             }}
             rowKey={state.rowKey}
             search={{
                 labelWidth: 'auto',
             }}
+            // type="form"
             pagination={state.pagination}
             dateFormatter="string"
             headerTitle={state.headerTitle}
-            toolBarRender={() => [
-                <Button key="button" icon={<PlusOutlined />} type="primary">
-                    新建
-                </Button>,
-                <Dropdown key="menu" overlay={menu}>
-                    <Button>
-                        <EllipsisOutlined />
-                    </Button>
-                </Dropdown>,
-            ]}
+            toolBarRender={toolBar}
             {...state}
 
         />
     );
-};
+})

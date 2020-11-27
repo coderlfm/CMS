@@ -55,7 +55,7 @@
     rc-util "^5.4.0"
     swr "^0.3.6"
 
-"@ant-design/pro-form@1.6.2":
+"@ant-design/pro-form@1.6.2", "@ant-design/pro-form@^1.6.2":
   version "1.6.2"
   resolved "https://registry.npm.taobao.org/@ant-design/pro-form/download/@ant-design/pro-form-1.6.2.tgz#2750fa6faadee1ebd593ac1ad15598688ae10c88"
   integrity sha1-J1D6b6re4evVk6wa0VWYaIrhDIg=

@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import ProLayout, { PageContainer, MenuDataItem } from '@ant-design/pro-layout';
 import { Button } from 'antd';
 
 import { useHistory, Switch } from 'react-router-dom'
 
 import { requestTest } from '@/services/request'
+import { requestNew } from '@/services/request'
 import customMenuDate from './customMenu.js';
 
 /**
  * @param {Object } routers 路由数组
  */
-export default ({ routers }) => {
+export default memo(({ routers }) => {
     const [menuData, setMenuData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [index, setIndex] = useState(0);
@@ -36,20 +37,37 @@ export default ({ routers }) => {
     const handleMenuClick = (e) => {
         console.log(e);
         if (e.key === '/table') {
-            requestTest({ url: '/init', method: 'get' }).then(res => {
-                if (res.code === '0') {
-                    history.push({
-                        pathname: '/table',
-                        state: {
-                            ...res.result.config,
-                            columns: res.result.column,
-                            search: { ...res.result.search, span: null },
-                            url: ''
-                        }
-                    })
-                }
-                console.log('res', res);
-            })
+            // requestNew({ url: '../mork/mork.json', method: 'get' }).then(res => {
+            setTimeout(() => {
+                const res = require('../mork/mork-search.json')
+                // if (res.code === '0') {
+                history.push({
+                    pathname: '/table',
+                    state: {
+                        ...res.result.config,
+                        columns: res.result.column,
+                        search: { ...res.result.search, span: null },
+                        url: ''
+                    }
+                })
+                // }
+                // console.log('res', res);
+            }, 500)
+            // })
+            // requestTest({ url: '/init', method: 'get' }).then(res => {
+            //     if (res.code === '0') {
+            //         history.push({
+            //             pathname: '/table',
+            //             state: {
+            //                 ...res.result.config,
+            //                 columns: res.result.column,
+            //                 search: { ...res.result.search, span: null },
+            //                 url: ''
+            //             }
+            //         })
+            //     }
+            //     console.log('res', res);
+            // })
         } else {
             history.push({
                 pathname: e.key,
@@ -99,4 +117,4 @@ export default ({ routers }) => {
             </ProLayout>
         </>
     );
-};
+})
