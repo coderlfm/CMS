@@ -67,6 +67,7 @@ export function requestTest(config) {
       if (err.response) {
         // 错误信息
         console.log(err.response);
+        reject(err.response)
       }
     })
   })

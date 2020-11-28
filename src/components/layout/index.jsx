@@ -1,8 +1,8 @@
 import React, { useState, useEffect, memo } from 'react';
 import ProLayout, { PageContainer, MenuDataItem } from '@ant-design/pro-layout';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 
-import { useHistory, Switch } from 'react-router-dom'
+import { useHistory, useLocation, Switch } from 'react-router-dom'
 
 import { requestTest } from '@/services/request'
 import { requestNew } from '@/services/request'
@@ -17,6 +17,7 @@ export default memo(({ routers }) => {
     const [index, setIndex] = useState(0);
 
     const history = useHistory();
+    const location = useLocation();
 
     // console.log('routers', routers);
 
@@ -37,23 +38,7 @@ export default memo(({ routers }) => {
     const handleMenuClick = (e) => {
         // console.log(e);
         if (e.key.includes('cms')) {
-            // requestNew({ url: '../mork/mork.json', method: 'get' }).then(res => {
-            // setTimeout(() => {
-            //     const res = require('../mork/mork-search.json')
-            //     // if (res.code === '0') {
-            //     history.push({
-            //         pathname: '/table',
-            //         state: {
-            //             ...res.result.config,
-            //             columns: res.result.column,
-            //             search: { ...res.result.search, span: null },
-            //             url: ''
-            //         }
-            //     })
-            //     // }
-            //     // console.log('res', res);
-            // }, 500)
-            // })
+
             requestTest({ url: e.key + '/init', method: 'get' }).then(res => {
                 if (res.code === '0') {
                     const state = {
@@ -71,6 +56,8 @@ export default memo(({ routers }) => {
 
                 }
                 // console.log('res', res);
+            }).catch(err => {
+                message.warning('请求超时', err.response)
             })
         } else {
             history.push({
@@ -103,13 +90,18 @@ export default memo(({ routers }) => {
                 // title={false}
                 menu={{
                     loading,
+                    defaultOpenAll: true
                 }}
                 location={{
-                    pathname: '/welcome/welcome',
+                    pathname:  location.pathname,
                 }}
                 // onMenuHeaderClick={(e) => { console.log(e); }}
                 // onPageChange={(e) => { console.log(e); }}
-                menuDataRender={() => menuData}
+                // menuDataRender={() => menuData}
+                route={{
+                    routes: menuData,
+                }}
+                // selectedKeys={{ selectedKeys: location.pathname }}
                 menuProps={{
                     onClick: handleMenuClick
                 }}
