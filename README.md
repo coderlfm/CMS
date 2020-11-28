@@ -1,5 +1,11 @@
+## TODO LIST
+嵌套文件夹必须在父文件夹创建index.jsx的bug
 
 ## 页面动态配置
+
+## layout设置
+左侧菜单高亮根据localtion.pathname === path 来自动选中菜单
+点击菜单时会先请求服务器, 响应失败则不进行跳转且提示 `请求超时`
 
 ### 解决页面刷新的问题
 点击菜单时存入session Storage，组件内取值时先从state中取值，取不到则从session Storage 取

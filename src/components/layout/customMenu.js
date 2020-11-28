@@ -21,17 +21,17 @@ export default [
   },
   {
     path: '/cms',
-    name: '/cms',
+    name: 'cms',
     children: [
       {
         path: '/cms/table',
-        name: '/cms/table',
+        name: 'table',
         exact: true,
       },
       {
         path: '/cms/date',
         key: '/cms/date',
-        name: '日期搜索示例',
+        name: '日期搜索',
         exact: true,
       },
     ]

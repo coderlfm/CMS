@@ -180,9 +180,9 @@ export default memo((props) => {
 
             columns={state.columns}
             actionRef={actionRef}
-            rowSelection={{
-                type: 'radio'
-            }}
+            // rowSelection={{
+            //     type: 'radio'
+            // }}
             request={
                 async (data = {}) => {
                     console.log('查询', data);

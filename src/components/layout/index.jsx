@@ -28,7 +28,7 @@ export default memo(({ routers }) => {
         setTimeout(() => {
             setMenuData(customMenuDate);
             setLoading(false);
-        }, 2000);
+        }, 300);
     }, [index]);
 
     /**
@@ -36,10 +36,10 @@ export default memo(({ routers }) => {
      * @param {Object} e 
      */
     const handleMenuClick = (e) => {
-        // console.log(e);
+        console.log(e);
         if (e.key.includes('cms')) {
 
-            requestTest({ url: e.key + '/init', method: 'get' }).then(res => {
+            requestTest({ url: e.key + '/init', method: 'post' }).then(res => {
                 if (res.code === '0') {
                     const state = {
                         ...res.result.config,
