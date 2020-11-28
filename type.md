@@ -36,7 +36,7 @@ headerTitle: 'test',    // 表格标题
 ---
 ## 输入框配置项
 
-+ 宽度
++ 宽度C:\lvze\hexo\test\koa\koa.js
     - XS = 104px 适用于短数字、短文本或选项。
     - S = 216px 适用于较短字段录入、如姓名、电话、ID 等。
     - M = 328px 标准宽度，适用于大部分字段长度。
@@ -114,9 +114,9 @@ headerTitle: 'test',    // 表格标题
 |showSearch|	使单选模式可搜索|	boolean|	false|
 | allowClear | 支持清除 | boolean | false|
 |autoClearSearchValue|	是否在选中项后清空搜索框，只在 mode 为 multiple 或 tags 时有效|	boolean|	true	|
-|autoFocus|	默认获取焦点|	boolean|	false|	
+|autoFocus|	默认获取焦点|	boolean|	false|
 |bordered|	是否有边框|	boolean|	true	|
-|defaultActiveFirstOption|	是否默认高亮第一个选项|	boolean	|true|	
+|defaultActiveFirstOption|	是否默认高亮第一个选项|	boolean	|true|
 |defaultOpen	|是否默认展开下拉菜单|	boolean|	|
 |disabled|	是否禁用|	boolean|	false|
 <br/>

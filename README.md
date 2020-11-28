@@ -4,6 +4,66 @@
 ### 解决页面刷新的问题
 点击菜单时存入session Storage，组件内取值时先从state中取值，取不到则从session Storage 取
 
+---
+## column 配置
+|   属性    |	描述    |	类型    |   默认值  |
+| :------- | -------- | --------- | -------- |
+|`title`      |表格/表单标题名  |string|
+|`dataIndex`  |后端返回数据key |string|
+|key  |搜索时请求服务器的key名 |string|dataIndex的值|
+|valueType  |值类型         |[valueType](#valueType) |'text'|
+|copyable   |  是否支持复制  |boolean|
+|ellipsis   |超出换行       |boolean|
+|search     |是否展示在搜索框 |boolean |true|
+|tooltip    |会在 title 之后展示一个 icon，hover 之后提示一些信息	|string|
+|width      |宽度           |string|
+|filters    |表头筛选项      |boolean |false|  
+|valueEnum  |当前列值的枚举   | [valueEnum](#valueEnum) |
+|hideInSearch|在查询表单中不展示此项|boolean  |
+|hideInTable|在 Table 中不展示此列|boolean  |
+<br/>
+
+### valueType 
+valueType 为 `index` `indexBorder` `option` 和`没有 dataIndex 和 key `的列在搜索表单会被将会忽略。
+按照规范，table 的表单不需要任何的必选参数，所有点击搜索和重置都会触发 request来发起一次查询。
+
+|类型   |	描述|	示例 |
+| :------- | -------- | --------- |
+|money  |	转化值为金额|	¥10,000.26 |
+|date   |	日期|	2019-11-16 |
+|dateRange  |	日期区间|	2019-11-16 2019-11-18 |
+|dateTime   |	日期和时间|	2019-11-16 12:50:00 |
+|dateTimeRange  |	日期和时间区间|	2019-11-16 12:50:00 2019-11-18 12:50:00 |
+|time   |	时间|	12:50:00 |
+|option |	操作项，会自动增加 marginRight，只支持一个数组,表单中会自动忽略	| [<a>操作a</a>,<a>操作b</a>] |
+|text   |	默认值，不做任何处理|	|
+|select |	选择|	|
+|textarea   |与 text 相同， form 转化时会转为 textarea 组件	|
+|index  |	序号列|	|
+|indexBorder    |	带 border 的序号列	|
+|progress   |	进度条|	|
+|digit  |	格式化数字展示，form| 转化时会转为 inputNumber	|
+|percent    |	百分比|	+1.12 |
+|code   |	代码块|	const a = b |
+|avatar |	头像|	展示一个头像 |
+|password   |	密码框|	密码相关的展示 |
+<br/>
+---
+
+### valueEnum
+|   属性    |	描述    |	类型    |   默认值  |
+| :------- | -------- | --------- | -------- |
+| key: string|传给后端的key，该key名为动态| [valueEnumType](#valueEnum)| |
+
+
+#### valueEnumType
+|   属性    |	描述    |	类型    |   默认值  |
+| :------- | -------- | --------- | -------- |
+|text| 展示在页面的文字|string  | |
+|status|该值要渲染的状态|'Success' \| 'Error' \| 'Processing' \| 'Warning' \| 'Default'||
+<br/>
+
+---
 ## 表单配置项
 |   属性    |	描述    |	类型    |   默认值  |
 | :------- | -------- | --------- | -------- |
@@ -110,7 +170,7 @@ headerTitle: 'test',    // 表格标题
 #### ProFormSelect [下拉选择](https://ant.design/components/select-cn/#API)
 |   属性    |	描述    |	类型    |   默认值  |
 | :------- | -------- | --------- | -------- |
-| valueEnum | 当前列值的枚举 valueEnum | {[key:string\|number]:any} |  |
+| valueEnum | 当前列值的枚举 valueEnum | [valueEnum](#valueEnum) |  |
 |options|	数据化配置选项内容，相比 jsx 定义会获得更好的渲染性能	|{ label, value }[]|
 | mode | 	设置 Select 的模式为多选或标签 | "multiple" \| "tags" | |
 | placeholder | 选择框默认文本	 | string | |

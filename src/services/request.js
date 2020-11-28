@@ -51,6 +51,7 @@ export function requestTest(config) {
 
   //请求拦截
   instance.interceptors.request.use((res) => {
+    // console.log('请求',res);
 
     return res
   }, (error) => {
@@ -85,7 +86,7 @@ export function requestNew(config) {
 
   //请求拦截
   instance.interceptors.request.use((res) => {
-
+    console.log('请求',res);
     return res
   }, (error) => {
 

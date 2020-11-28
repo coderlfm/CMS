@@ -16,7 +16,7 @@ const waitTime = (time = 100) =>
     });
 
 export default memo(() => {
-    console.log('modal');
+    // console.log('modal');
     return (
         <ModalForm
             title="新建表单"

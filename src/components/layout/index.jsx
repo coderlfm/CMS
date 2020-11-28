@@ -18,7 +18,7 @@ export default memo(({ routers }) => {
 
     const history = useHistory();
 
-    console.log('routers', routers);
+    // console.log('routers', routers);
 
     // 请求服务端菜单数据
     useEffect(() => {
@@ -35,8 +35,8 @@ export default memo(({ routers }) => {
      * @param {Object} e 
      */
     const handleMenuClick = (e) => {
-        console.log(e);
-        if (e.key === '/table') {
+        // console.log(e);
+        if (e.key.includes('cms')) {
             // requestNew({ url: '../mork/mork.json', method: 'get' }).then(res => {
             // setTimeout(() => {
             //     const res = require('../mork/mork-search.json')
@@ -62,15 +62,15 @@ export default memo(({ routers }) => {
                         search: { ...res.result.search, span: null },
                         url: ''
                     }
+                    sessionStorage.setItem('init', JSON.stringify(state))
 
                     history.push({
                         pathname: e.key,
                         state
                     })
 
-                    sessionStorage.setItem('init', JSON.stringify(state))
                 }
-                console.log('res', res);
+                // console.log('res', res);
             })
         } else {
             history.push({

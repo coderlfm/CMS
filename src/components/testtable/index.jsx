@@ -149,7 +149,7 @@ export default memo((props) => {
     // const history = useHistory();
     const location = useLocation();
 
-    console.log( location);
+    console.log(location);
 
     // console.log('props.', state);
     const actionRef = useRef();
@@ -186,7 +186,7 @@ export default memo((props) => {
             request={
                 async (data = {}) => {
                     console.log('查询', data);
-                    const result = await requestTest({ url: location.pathname+'/data', method: 'get', data })
+                    const result = await requestTest({ url: location.pathname + '/data', method: 'post', data })
                     // const result = require('../mork/mork-data.json')
                     let res = {
                         data: result.result.list,
