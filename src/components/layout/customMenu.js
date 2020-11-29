@@ -30,8 +30,12 @@ export default [
       },
       {
         path: '/cms/date',
-        key: '/cms/date',
         name: '日期搜索',
+        exact: true,
+      },
+      {
+        path: '/cms/number',
+        name: '数字搜索',
         exact: true,
       },
     ]
