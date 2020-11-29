@@ -27,6 +27,7 @@
 |valueEnum  |当前列值的枚举   | [valueEnum](#valueEnum) |
 |hideInSearch|在查询表单中不展示此项|boolean  |
 |hideInTable|在 Table 中不展示此列|boolean  |
+|initialValue|valueType为 select \| radio \| radioButton \| checkbox 时可设置在表单搜索时的默认值| select \|checkbox 为数组 ['string'],单选为 string |
 <br/>
 
 ### valueType 
@@ -39,6 +40,10 @@ valueType 为 `index` `indexBorder` `option` 和`没有 dataIndex 和 key `的�
 | :------- | -------- | --------- |--------- |
 |text   |	默认值，不做任何处理|	| |
 |select |	下拉选择|和该列中valueEnum 的key类型相同	| |
+|radio |	单选|和该列中valueEnum 的key类型相同	| |
+|radioButton |	按钮形式单选|和该列中valueEnum 的key类型相同	| |
+|checkbox |	多选|和该列中valueEnum 的key类型相同	| |
+-|checkbox |	多选|和该列中valueEnum 的key类型相同	| |
 |money  |	转化值为金额| |	¥10,000.26 |
 |date   |	日期|number \| string	|2019-11-16 |
 |dateRange  |	日期区间|number \| string |	2019-11-16 2019-11-18 |

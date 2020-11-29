@@ -38,6 +38,11 @@ export default [
         name: '数字搜索',
         exact: true,
       },
+      {
+        path: '/cms/select',
+        name: '选择搜索',
+        exact: true,
+      },
     ]
   },
 ];
